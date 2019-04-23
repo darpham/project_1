@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Sheets API Quickstart</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+    <h1>Recipe API</h1>
+
+    <label for="favRestaurant">Favorite restaurant in SF</label>
+    <input type="text" name="restaurant" id="restaurant">
+    
+    <br>
+
+    <label for="cuisine">Ingredients:</label>
+    <input type="text" name="ingredients" id="ingredients">
+
+    <br>
+
+    <p id="recipe" rows="20" cols="80"></p>
+
+    <div id="buttonContainer">
+        <a class="btn btn-primary add-animals-btn" id="search" role="button">Search</a>
+    <pre id="content" style="white-space: pre-wrap;"></pre>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    $("#search").on("click", function() {
+        yelpTags();
+        console.log("clicked");
+    });
+ 
+    function yelpTags() {
+        console.log("search query run");
+
+        var search = $("#restaurant").val().trim();
+        console.log("search term " + search);
+
+        var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=by-" + search + "&location=sanfrancisco";
+        var cuisineString = "";
+
+        $.ajax({
+            url: myurl,
+            method: "GET",                
+            dataType: 'json',
+            headers: {'Authorization': 'Bearer Xtg-ETMFIqtxhmgIcRKBksYvG86inYhtAJxQjT87qzbrGSJ1Gte9bNX3tv0HDgB_nIpdi0DuPZH1zHad6lv2TrjPv2-UgNLCnUKFRB3AHjoiPTv2bdkAqPV-grO-XHYx',},
+
+        })
+        .then(function(response) {
+            console.log(response);
+            // console.log(response.businesses[0].categories.length);
+            for(var i = 0; i < response.businesses[0].categories.length; i++) {
+                /* console.log(response); */
+                console.log(response.businesses[0].categories[i].alias);
+                cuisineString = cuisineString.concat(response.businesses[0].categories[i].alias).concat(" ");
+                console.log(cuisineString);
+            }
+            getRecipe(cuisineString);
+        });
+    };
+
+    function getRecipe(cuisineString) {
+        console.log("recipe query run");
+
+        var from = 0;
+        var to = 10;
+        var search = cuisineString;
+        let app_id = '5540b406';
+        let app_key = '43e39952e7ae124cfd82f0b1b8c3c18b'
+        var queryURL = "https://api.edamam.com/search?q="+search+"&from=" + from + "&to=" + to + "&app_id="+app_id+"&app_key="+app_key;
+
+        console.log("search string" + search);
+
+        $.ajax({
+            url: queryURL,
+            method: "GET",                
+        })
+        .then(function(response) {
+            console.log(response);
+            // $("#recipe").text(JSON.stringify(response));
+
+            // for(var i = 0; i < response.hits.length; i++) {
+            for(var i = 0; i < 4; i++) {
+                var recipeDiv = $("<div>");
+                // var p = $("<p>").text("Recipe Name: " + response.hits[i].label);
+                // var p2 = $("<p>").text("ingredients: " + JSON.stringify(response));
+                var newLink = $('<a />', {
+                    id : "recipeLink",
+                    name : "link",
+                    href : response.hits[i].recipe.url,
+                    text : response.hits[i].recipe.label
+                });
+                var foodImage = $('<img />', {
+                    id : "foodImg",
+                    src: response.hits[i].recipe.image,
+                    alt: 'food image'
+                });
+                recipeDiv.append(newLink);
+                recipeDiv.append(foodImage);
+                $("#recipe").append(recipeDiv);
+            }
+        });
+    };
+
+    </script>
+  </body>
+</html>
