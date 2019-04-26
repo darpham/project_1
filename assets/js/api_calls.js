@@ -8,31 +8,13 @@ var ingredientsArr = ['salmon'];
 var excludeArr = ['kiwi'];
 var healthArr = ['Peanut-Free', 'Tree-Nut-Free'];
 
-$("#search").on("click", function() {
-    
-    var cuisineOutput = "";
-    // uses Jquery to pull values
-
-    // values required for Yelp
-    // restaurantSearch = $("#restaurant-search")
-    // restaurantLocationSearch = $("#location-search")
-
-    // values required for Edamam
-    // ingredientsArr = $("#ingredients-search").val();
-    // excludeArr = $("#exclude-search").val();
-    $(".loader").show();
-    api_obj.yelpToCuisine(restaurantSearch, restaurantLocationSearch, ingredientsArr, excludeArr, healthArr)
-    
-    console.log("clicked button"); 
-});
-
 // Object that takes in parameters, pings the API, and returns an object
 var api_obj = {
 
     // Inputs: takes in a single restaurant (string), and single location (string, e.g. San Francisco), Expects values, not an array or jquery object
     // Outputs: a string (cuisine)
     yelpToCuisine : function(restaurant, location, ingredients, exclude, health) {
-        
+        $(".loader").show();
         // console logs so that you know when the method is successfully called
         console.log("yelp query run");
 
@@ -101,8 +83,7 @@ var api_obj = {
         .then(function(response) {
             console.log(response);
             $(".loader").hide();
-            return response;
-            
+            return response; 
         });
 
     }};
