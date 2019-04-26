@@ -4,9 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Recipe Finder</title>
+
+    <!-- Added a link to our external stylesheet-->
+    <link rel="stylesheet" href="assets/css/reset.css">
+
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- Added a link to our external stylesheet-->
+    <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 <body>
+
+        <h1>Recipe API</h1>
+
+        <label for="favRestaurant">Favorite restaurant in SF</label>
+        <input type="text" name="restaurant" id="restaurant-search">
+        <br>
+        <label for="cuisine">Location:</label>
+        <input type="text" name="ingredients" id="location-search">
+        <br>
+        <label for="cuisine">Ingredients:</label>
+        <input type="text" name="ingredients" id="ingredients-search">
+        <br>
+        <label for="cuisine">Exclude:</label>
+        <input type="text" name="ingredients" id="exclude-search">
+        <br>    
+        <label for="cuisine">Health:</label>
+        <input type="text" name="ingredients" id="health-search">
+        <br>
+        <p id="recipe" rows="20" cols="80"></p>
+    
+        <div id="buttonContainer">
+            <a class="btn btn-primary add-animals-btn" id="search" role="button">Search</a>
+        <pre id="content" style="white-space: pre-wrap;"></pre>
+    
+    
+        <div class="loader" style="display:none"></div>
+    
     
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="assets/js/api_calls.js"></script>
+
+
 </html>
