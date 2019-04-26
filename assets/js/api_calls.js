@@ -8,6 +8,19 @@ var ingredientsArr = ['salmon'];
 var excludeArr = ['kiwi'];
 var healthArr = ['Peanut-Free', 'Tree-Nut-Free'];
 
+var config = {
+    apiKey: "AIzaSyB0yGDhu2GbRbqDZrEAxNn2OlT4Hp09-_I",
+    authDomain: "test-app-2925d.firebaseapp.com",
+    databaseURL: "https://test-app-2925d.firebaseio.com",
+    projectId: "test-app-2925d",
+    storageBucket: "test-app-2925d.appspot.com",
+    messagingSenderId: "485968493410"
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database().ref().child('credentials');
+  
+
 // Object that takes in parameters, pings the API, and returns an object
 var api_obj = {
 
@@ -15,6 +28,10 @@ var api_obj = {
     // Outputs: a string (cuisine)
     yelpToCuisine : function(restaurant, location, ingredients, exclude, health) {
         $(".loader").show();
+        
+        // console.log(database.ref().on("value", function(snapshot) {return snapshot.val().credentials.yelp.yelpHeaders;}));
+
+
         // console logs so that you know when the method is successfully called
         console.log("yelp query run");
 
@@ -30,22 +47,26 @@ var api_obj = {
         console.log("search location: " + location);
         console.log("search query: " + myurl);
 
-        $.ajax({
-            url: myurl,
-            method: "GET",                
-            dataType: 'json',
-            headers: {'Authorization': 'Bearer Xtg-ETMFIqtxhmgIcRKBksYvG86inYhtAJxQjT87qzbrGSJ1Gte9bNX3tv0HDgB_nIpdi0DuPZH1zHad6lv2TrjPv2-UgNLCnUKFRB3AHjoiPTv2bdkAqPV-grO-XHYx',},
-        })
-        .then(function(response) {
+        database.child('yelp').on('value', function(snapshot) {
+            var yelpHeaders = snapshot.val().yelpHeaders;
 
-            console.log(response);
-
-            for(var i = 0; i < response.businesses[0].categories.length; i++) {
-                console.log(response.businesses[0].categories[i].alias);
-                cuisineString = cuisineString.concat(response.businesses[0].categories[i].alias).concat(" ");
-                console.log(cuisineString);
-            }
-            api_obj.cuisineToRecipe(cuisineString, ingredients, exclude, health);
+            $.ajax({
+                url: myurl,
+                method: "GET",                
+                dataType: 'json',
+                headers: {'Authorization': yelpHeaders,},
+            })
+            .then(function(response) {
+    
+                console.log(response);
+    
+                for(var i = 0; i < response.businesses[0].categories.length; i++) {
+                    console.log(response.businesses[0].categories[i].alias);
+                    cuisineString = cuisineString.concat(response.businesses[0].categories[i].alias).concat(" ");
+                    console.log(cuisineString);
+                }
+                api_obj.cuisineToRecipe(cuisineString, ingredients, exclude, health);
+            });
         });
     },
 
@@ -66,26 +87,30 @@ var api_obj = {
         var q = cuisineString + ingredientString;
         var from = 0;
         var to = 10;
-        let app_id = '5540b406';
-        let app_key = '43e39952e7ae124cfd82f0b1b8c3c18b'
-        console.log("excludeString: " + excludeString + " healthString: " + healthString);
 
-        // Can't get "health" to work for some reason. Keep getting 403. Maybe they stopped supporting?
-        // var queryURL = "https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=" + q + "&" + excludeString + "&" + healthString + "&from=" + from + "&to=" + to + "&app_id="+app_id+"&app_key="+app_key;
-        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=" + q + "&" + excludeString + "&from=" + from + "&to=" + to + "&app_id="+app_id+"&app_key="+app_key;
-        
-        console.log("search string: " + queryURL);
+        database.child('edamam').on('value', function(snapshot) {
 
-        $.ajax({
-            url: queryURL,
-            method: "GET",                
-        })
-        .then(function(response) {
-            console.log(response);
-            $(".loader").hide();
-            return response; 
+            console.log("excludeString: " + excludeString + " healthString: " + healthString);
+    
+            var app_id = snapshot.val().app_id;
+            var app_key = snapshot.val().app_key;
+  
+            // Can't get "health" to work for some reason. Keep getting 403. Maybe they stopped supporting?
+            // var queryURL = "https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=" + q + "&" + excludeString + "&" + healthString + "&from=" + from + "&to=" + to + "&app_id="+app_id+"&app_key="+app_key;
+            var queryURL = "https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=" + q + "&" + excludeString + "&from=" + from + "&to=" + to + "&app_id="+app_id+"&app_key="+app_key;
+            
+            console.log("search string: " + queryURL);
+    
+            $.ajax({
+                url: queryURL,
+                method: "GET",                
+            })
+            .then(function(response) {
+                console.log(response);
+                $(".loader").hide();
+                return response; 
+            });
         });
-
     }};
 
 
