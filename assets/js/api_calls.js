@@ -7,6 +7,7 @@ var restaurantLocationSearch = 'San Francisco';
 var ingredientsArr = ['salmon'];
 var excludeArr = ['kiwi'];
 var healthArr = ['Peanut-Free', 'Tree-Nut-Free'];
+var resultObj = {};
 
 var config = {
     apiKey: "AIzaSyB0yGDhu2GbRbqDZrEAxNn2OlT4Hp09-_I",
@@ -28,8 +29,21 @@ var api_obj = {
     // Outputs: a string (cuisine)
     yelpToCuisine : function(restaurant, location, ingredients, exclude, health) {
         $(".loader").show();
-        
-        // console.log(database.ref().on("value", function(snapshot) {return snapshot.val().credentials.yelp.yelpHeaders;}));
+
+
+        // NOTE: not DRY, need to refactor with pass by variable/parameter taken into account
+        if(ingredients === undefined) {
+            ingredients = [];
+            console.log("changed: " + ingredients);
+        }
+        if(exclude === undefined) {
+            exclude = [];
+            console.log("changed: " + exclude);
+        }
+        if(health === undefined) {
+            health = [];
+            console.log("changed: " + health);
+        }
 
 
         // console logs so that you know when the method is successfully called
@@ -71,7 +85,7 @@ var api_obj = {
     },
 
     // input: type of cuisine (string), ingredients (array), ingredients to be excluded (array), and health preferences (array)
-    // output: object with arrays of "hits" (e.g. recipes)
+    // output: Returns an object with arrays of "hits" (e.g. recipes). Also saves this as a variable called resultObj
     cuisineToRecipe : function(cuisineString, ingredientArr, excludeArr, healthArr) {
 
         // console logs so that you know when the method is successfully called
@@ -80,8 +94,8 @@ var api_obj = {
         // log the inputs
         console.log("cuisineString: " + cuisineString + " ingredients: " + ingredientArr + " exclude: " + excludeArr + " health: " + healthArr);
 
-        excludeString = url_builder_obj.arrUrl(excludeArr, 'exclude=');
-        healthString = url_builder_obj.arrUrl(healthArr, 'health=');
+        excludeString = helper_func.arrUrl(excludeArr, 'exclude=');
+        healthString = helper_func.arrUrl(healthArr, 'health=');
 
         var ingredientString = ingredientArr.join(' ')
         var q = cuisineString + ingredientString;
@@ -108,6 +122,8 @@ var api_obj = {
             .then(function(response) {
                 console.log(response);
                 $(".loader").hide();
+                resultObj = response;
+                console.log("resultObj: " + resultObj);
                 return response; 
             });
         });
@@ -116,7 +132,7 @@ var api_obj = {
 
 
 // Object that takes in arrays and transforms them into a format that can be accepted by the api_obj methods
-var url_builder_obj = {
+var helper_func = {
 
     // input: array
     // output: Same array with duplicates removed
@@ -139,5 +155,14 @@ var url_builder_obj = {
             return urlString;
         }
         else return appendChar + arr[0];
+    },
+/* 
+    undefinedToNull: function(value){
+        if (value === undefined) {
+            var newVal = [];
+            return newVal;
+        }
     }
+ */
+
 };
