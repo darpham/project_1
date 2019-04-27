@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <title>Yummy Yam</title>
@@ -19,37 +20,32 @@
         </div>
         <div class="row">
                 <div class="col-lg-12 search">
-                    <label for="favRestaurant">Favorite restaurant in SF</label>
-                    <input type="text" name="restaurant" id="restaurant-search">
-                    <br>
-                    <label for="cuisine">Location:</label>
-                    <input type="text" name="ingredients" id="location-search">
-                    <br>
-                    <label for="cuisine">Ingredients:</label>
-                    <input type="text" name="ingredients" id="ingredients-search">
-                    <br>
-                    <label for="cuisine">Exclude:</label>
-                    <input type="text" name="ingredients" id="exclude-search">
-                    <br>    
-                    <label for="cuisine">Health:</label>
-                    <input type="text" name="ingredients" id="health-search">
-                    <br>
-                    <p id="recipe" rows="20" cols="80"></p>
-                
-                    <div id="buttonContainer">
-                        <a class="btn btn-primary add-animals-btn" id="search" role="button">Search</a>
-                    <pre id="content" style="white-space: pre-wrap;"></pre>
-                
-                
-                    <div class="loader" style="display:none"></div>
-                    </div>     
+                    <form id="searchinfo">
+                        <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text">Find:</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search any restaurant..." name="restaurant" id="restaurant-search">
+                        <span class="input-group-text">Near:</span>
+                        <input type="text" class="form-control" placeholder="Search anywhere..." id="location-search" name="location">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                        <div>
+                        <input type="text" placeholder="ingredients" name="ingredients" id="ingredients-search">
+                        <input type="text" placeholder="ingredients" name="exclude" id="exclude-search">
+                        <input type="text" placeholder="ingredients" name="health" id="health-search">
+                        <a class="btn btn-success add-btn" id="search" role="button">Search</a>
+                        <pre id="content" style="white-space: pre-wrap;"></pre>
+                        <div class="loader" style="display:none"></div>
+                        </div>    
+                    </form>   
                 </div>
         </div>
         <div class="row"><p>Results:</p></div>
         <div class="row">
             <div class="col-md-4 results">
                 <img src="assets/images/burger.jpg" class="imgportf" alt="Hot">
-                <h4>Hot<i class="em em-fire"></i></h4>
+                <h4><i class="em em-fire"></i></h4>
             </div>
             <div class="col-md-4 results">
                 <img src="assets/images/dog.jpg" class="imgportf" alt="New">
@@ -57,7 +53,7 @@
             </div>
             <div class="col-md-4 results">
                 <img src="assets/images/bread.jpg" class="imgportf" alt="Top"></a>
-                <h4>Top<i class="em em-star"></i></h4>
+                <h4><i class="em em-star"></i></h4>
             </div>
             <div class="col-md-4 results">
                 <img src="assets/images/dog.jpg" class="imgportf" alt="New">
@@ -65,11 +61,11 @@
             </div>
             <div class="col-md-4 results">
                 <img src="assets/images/bread.jpg" class="imgportf" alt="Top"></a>
-                <h4>Top<i class="em em-star"></i></h4>
+                <h4><i class="em em-star"></i></h4>
             </div>
             <div class="col-md-4 results">
                 <img src="assets/images/burger.jpg" class="imgportf" alt="Hot">
-                <h4>Hot<i class="em em-fire"></i></h4>
+                <h4><i class="em em-fire"></i></h4>
             </div>
         </div>
     </div>
@@ -79,6 +75,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     <script src="assets/js/api_calls.js"></script>
+    <script src="assets/js/index_load.js"></script>
     <script src="assets/js/dom_manipulation.js"></script>
 </body>
 </html>
