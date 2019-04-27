@@ -72,7 +72,7 @@ var api_obj = {
     },
 
     // input: type of cuisine (string), ingredients (array), ingredients to be excluded (array), and health preferences (array)
-    // output: object with arrays of "hits" (e.g. recipes)
+    // output: Returns an object with arrays of "hits" (e.g. recipes). Also saves this as a variable called resultObj
     cuisineToRecipe : function(cuisineString, ingredientArr, excludeArr, healthArr) {
 
         // console logs so that you know when the method is successfully called
