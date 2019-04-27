@@ -16,7 +16,7 @@ body {
     background-color: transparent;
     border: none;
 }
-form {
+#randomsearch {
    margin-top: 50px;
    margin-left: 80px;
 }
@@ -62,4 +62,11 @@ p {
     margin-left: 40px;
     font-size: 25px;
     margin-bottom: 0px;
+}
+#searchinfo {
+    margin-left: 30px;
+    margin-top: 30px;
+}
+.add-btn {
+    background: #4aaaa5;
 }
