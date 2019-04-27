@@ -29,8 +29,21 @@ var api_obj = {
     // Outputs: a string (cuisine)
     yelpToCuisine : function(restaurant, location, ingredients, exclude, health) {
         $(".loader").show();
-        
-        // console.log(database.ref().on("value", function(snapshot) {return snapshot.val().credentials.yelp.yelpHeaders;}));
+
+
+        // NOTE: not DRY, need to refactor with pass by variable/parameter taken into account
+        if(ingredients === undefined) {
+            ingredients = [];
+            console.log("changed: " + ingredients);
+        }
+        if(exclude === undefined) {
+            exclude = [];
+            console.log("changed: " + exclude);
+        }
+        if(health === undefined) {
+            health = [];
+            console.log("changed: " + health);
+        }
 
 
         // console logs so that you know when the method is successfully called
@@ -81,8 +94,8 @@ var api_obj = {
         // log the inputs
         console.log("cuisineString: " + cuisineString + " ingredients: " + ingredientArr + " exclude: " + excludeArr + " health: " + healthArr);
 
-        excludeString = url_builder_obj.arrUrl(excludeArr, 'exclude=');
-        healthString = url_builder_obj.arrUrl(healthArr, 'health=');
+        excludeString = helper_func.arrUrl(excludeArr, 'exclude=');
+        healthString = helper_func.arrUrl(healthArr, 'health=');
 
         var ingredientString = ingredientArr.join(' ')
         var q = cuisineString + ingredientString;
@@ -119,7 +132,7 @@ var api_obj = {
 
 
 // Object that takes in arrays and transforms them into a format that can be accepted by the api_obj methods
-var url_builder_obj = {
+var helper_func = {
 
     // input: array
     // output: Same array with duplicates removed
@@ -142,5 +155,14 @@ var url_builder_obj = {
             return urlString;
         }
         else return appendChar + arr[0];
+    },
+/* 
+    undefinedToNull: function(value){
+        if (value === undefined) {
+            var newVal = [];
+            return newVal;
+        }
     }
+ */
+
 };
