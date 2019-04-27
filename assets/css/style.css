@@ -1,0 +1,65 @@
+body {
+    background-image: url("../images/bananas.png");
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    color: rgb(38, 78, 78);
+}
+.container {
+    margin: 0 auto;
+}
+.title {
+    margin: 20px;
+}
+.em-knife_fork_plate {
+    margin-right: 20px;
+}
+.btn-default {
+    background-color: transparent;
+    border: none;
+}
+form {
+   margin-top: 50px;
+   margin-left: 80px;
+}
+.input-group {
+    width: 1000px;
+    align-content: center;
+}
+.em-mag {
+    margin-left: 5px;
+}
+.imgportf {
+    margin-left: 30px;
+    width: 250px;
+    height: 200px;
+    margin-top: 40px;
+    }
+h4 {
+    position: absolute;
+    bottom: 10px;
+    padding: 15px;
+    margin-bottom: 0;
+    margin-left: 30px;
+    width: 250px;
+    line-height: 30px;
+    color: yellow;
+    text-align: center;
+    background: #4aaaa5;
+    border-bottom: 0;
+    opacity: 0.8;
+    }
+.em-fire, .em-star {
+    margin-left: 10px;
+}
+footer {
+    padding: 10px 0;
+    clear: both;
+    font-size: 8px;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 30px;
+    }     
+p {
+    margin-left: 40px;
+    font-size: 25px;
+    margin-bottom: 0px;
+}

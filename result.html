@@ -14,44 +14,60 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 title">
-                <h1><i class="em em-knife_fork_plate"></i>Yummy Yam</h1>
+                <h1><a href=index.html><i class="em em-knife_fork_plate"></i></a>Yummy Yam</h1>
             </div>
-        <div class="row">
-                <div class="col-lg-12 searchbar">
-                    <form>
-                        <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" required>
-                            <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit">
-                            <h3><i class="em em-mag"></i></h3>
-                            </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>     
         </div>
         <div class="row">
-            <div class="col-md-4 suggested">
+                <div class="col-lg-12 search">
+                    <label for="favRestaurant">Favorite restaurant in SF</label>
+                    <input type="text" name="restaurant" id="restaurant-search">
+                    <br>
+                    <label for="cuisine">Location:</label>
+                    <input type="text" name="ingredients" id="location-search">
+                    <br>
+                    <label for="cuisine">Ingredients:</label>
+                    <input type="text" name="ingredients" id="ingredients-search">
+                    <br>
+                    <label for="cuisine">Exclude:</label>
+                    <input type="text" name="ingredients" id="exclude-search">
+                    <br>    
+                    <label for="cuisine">Health:</label>
+                    <input type="text" name="ingredients" id="health-search">
+                    <br>
+                    <p id="recipe" rows="20" cols="80"></p>
+                
+                    <div id="buttonContainer">
+                        <a class="btn btn-primary add-animals-btn" id="search" role="button">Search</a>
+                    <pre id="content" style="white-space: pre-wrap;"></pre>
+                
+                
+                    <div class="loader" style="display:none"></div>
+                    </div>     
+                </div>
+        </div>
+        <div class="row"><p>Results:</p></div>
+        <div class="row">
+            <div class="col-md-4 results">
                 <img src="assets/images/burger.jpg" class="imgportf" alt="Hot">
                 <h4>Hot<i class="em em-fire"></i></h4>
             </div>
-            <div class="col-md-4 suggested">
+            <div class="col-md-4 results">
                 <img src="assets/images/dog.jpg" class="imgportf" alt="New">
                 <h4><i class="em em-new"></i></h4>
             </div>
-            <div class="col-md-4 suggested">
+            <div class="col-md-4 results">
                 <img src="assets/images/bread.jpg" class="imgportf" alt="Top"></a>
                 <h4>Top<i class="em em-star"></i></h4>
             </div>
-            <div class="col-md-4 suggested">
+            <div class="col-md-4 results">
                 <img src="assets/images/dog.jpg" class="imgportf" alt="New">
                 <h4><i class="em em-new"></i></h4>
             </div>
-            <div class="col-md-4 suggested">
+            <div class="col-md-4 results">
                 <img src="assets/images/bread.jpg" class="imgportf" alt="Top"></a>
                 <h4>Top<i class="em em-star"></i></h4>
             </div>
-            <div class="col-md-4 suggested">
+            <div class="col-md-4 results">
                 <img src="assets/images/burger.jpg" class="imgportf" alt="Hot">
                 <h4>Hot<i class="em em-fire"></i></h4>
             </div>
