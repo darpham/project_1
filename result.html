@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <title>Yummy Yam</title>
@@ -23,24 +25,25 @@
                     <form id="searchinfo">
                         <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                        <span class="input-group-text">Find:</span>
+                        <span class="input-group-text one">Find:</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Search any restaurant..." name="restaurant" id="restaurant-search">
-                        <span class="input-group-text">Near:</span>
+                        <input type="text" class="form-control" placeholder="Search any restaurant..." name="restaurant" id="restaurant-search" required>
+                        <span class="input-group-text one"><i class="material-icons" style="font-size:36px">add_location</i>Near:</span>
                         <input type="text" class="form-control" placeholder="Search anywhere..." id="location-search" name="location">
-                        <button type="submit"><i class="fa fa-search"></i></button>
+                        <button type="submit" class="searchfa"><i class="fa fa-search"></i></button>
                         </div>
                         <div>
+                        <i class="fa fa-filter"></i>
                         <input type="text" placeholder="ingredients" name="ingredients" id="ingredients-search">
-                        <input type="text" placeholder="ingredients" name="exclude" id="exclude-search">
+                        <input type="text" placeholder="exclude ingredients" name="exclude" id="exclude-search">
                         <input type="text" placeholder="ingredients" name="health" id="health-search">
-                        <a class="btn btn-success add-btn" id="search" role="button">Search</a>
                         <pre id="content" style="white-space: pre-wrap;"></pre>
                         <div class="loader" style="display:none"></div>
                         </div>    
                     </form>   
                 </div>
         </div>
+        
         <div class="row"><p>Results:</p></div>
         <div class="row">
             <div class="col-md-4 results">
