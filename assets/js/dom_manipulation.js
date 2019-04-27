@@ -1,3 +1,23 @@
+
+
+$(document).ready(function(){
+    var ingredientsArr = [];
+    var excludeArr = [];
+    var healthArr = [];
+
+    api_obj.yelpToCuisine(
+        default_settings.fav_restaurants[Math.floor(Math.random()*default_settings.fav_restaurants.length)]
+        , default_settings.default_location
+        , ingredientsArr
+        , excludeArr
+        , healthArr
+    );
+
+});
+
+
+
+
 $("#search").on("click", function() {
     
     var cuisineOutput = "";
@@ -16,3 +36,5 @@ $("#search").on("click", function() {
 
     console.log("clicked button"); 
 });
+
+

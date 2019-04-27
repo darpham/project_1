@@ -7,6 +7,7 @@ var restaurantLocationSearch = 'San Francisco';
 var ingredientsArr = ['salmon'];
 var excludeArr = ['kiwi'];
 var healthArr = ['Peanut-Free', 'Tree-Nut-Free'];
+var resultObj = {};
 
 var config = {
     apiKey: "AIzaSyB0yGDhu2GbRbqDZrEAxNn2OlT4Hp09-_I",
@@ -108,6 +109,8 @@ var api_obj = {
             .then(function(response) {
                 console.log(response);
                 $(".loader").hide();
+                resultObj = response;
+                console.log("resultObj: " + resultObj);
                 return response; 
             });
         });
