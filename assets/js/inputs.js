@@ -83,5 +83,19 @@ for (var i=0; i < dietary_restrictions.length; i++) {
     restriction.append(dietary_restrictions[i]);
 
     $('#health-search').append(restriction);
+
 }
 
+$('#health-search').on('click', function() {
+
+    $(this).children('li').each(function () {
+
+        if ($(this).children('input').is(':checked')) {
+
+            healthArr.push($(this).children('input').attr('value'));
+            console.log("HERERERERERER: " + healthArr);
+        }
+
+    });
+
+});
