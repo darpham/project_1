@@ -1,14 +1,8 @@
-
-    
-// each of these takes in an array of strings
-
-var restaurantSearch = 'akikos';
-var restaurantLocationSearch = 'San Francisco';
-var ingredientsArr = ['salmon'];
-var excludeArr = ['kiwi'];
-var healthArr = ['Peanut-Free', 'Tree-Nut-Free'];
+// Creates an empty object to store the result object
 var resultObj = {};
 
+
+// Setup firebase
 var config = {
     apiKey: "AIzaSyB0yGDhu2GbRbqDZrEAxNn2OlT4Hp09-_I",
     authDomain: "test-app-2925d.firebaseapp.com",
@@ -18,40 +12,31 @@ var config = {
     messagingSenderId: "485968493410"
   };
   firebase.initializeApp(config);
-
   var database = firebase.database().ref().child('credentials');
   
+
 
 // Object that takes in parameters, pings the API, and returns an object
 var api_obj = {
 
+
     // Inputs: takes in a single restaurant (string), and single location (string, e.g. San Francisco), Expects values, not an array or jquery object
     // Outputs: a string (cuisine)
     yelpToCuisine : function(restaurant, location, ingredients, exclude, health) {
+        
+        // console logs so that you know when the method is successfully called
+        console.log("yelp call made");
+        
         $(".loader").show();
 
-
-        // NOTE: not DRY, need to refactor with pass by variable/parameter taken into account
-        if(ingredients === undefined) {
-            ingredients = [];
-            console.log("changed: " + ingredients);
-        }
-        if(exclude === undefined) {
-            exclude = [];
-            console.log("changed: " + exclude);
-        }
-        if(health === undefined) {
-            health = [];
-            console.log("changed: " + health);
-        }
-
-
-        // console logs so that you know when the method is successfully called
-        console.log("yelp query run");
+        // makes params optional, though you still need to send an empty array if only missing specific params
+        // ----Need to handle a case where they provide exclude but no ingredients----
+        location = location || "San Francisco";
+        ingredients = ingredients || [];
+        exclude = exclude || [];
+        health = health || [];
 
         // Transforms the inputs and creates the API query
-        // restaurant = restaurant.val();
-        // location = location.val().replace(/\s/g, '');
         location = location.replace(/\s/g, '');
         var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=by-" + restaurant + "&location=" + location;
         var cuisineString = "";
@@ -61,6 +46,7 @@ var api_obj = {
         console.log("search location: " + location);
         console.log("search query: " + myurl);
 
+        // Uses firebase to grab creds
         database.child('yelp').on('value', function(snapshot) {
             var yelpHeaders = snapshot.val().yelpHeaders;
 
@@ -71,48 +57,60 @@ var api_obj = {
                 headers: {'Authorization': yelpHeaders,},
             })
             .then(function(response) {
-    
+
+                console.log("yelp response: ");
                 console.log(response);
-    
-                for(var i = 0; i < response.businesses[0].categories.length; i++) {
-                    console.log(response.businesses[0].categories[i].alias);
-                    cuisineString = cuisineString.concat(response.businesses[0].categories[i].alias).concat(" ");
-                    console.log(cuisineString);
-                }
+
+                // Option 1: Will loop through only the first two items. Sometimes gets better results
+                var j = 0;
+                if(response.businesses[0].categories.length == 1){
+                    cuisineString = response.businesses[0].categories[0].alias}
+                else {
+                    cuisineString = response.businesses[0].categories[0].alias + "," + response.businesses[0].categories[1].alias
+                };
+        
+                // Option 2: Will loop through all items
+/*                 for(var i = 0; i < response.businesses[0].categories.length; i++) {
+                    // if current iteration is at the end of the list...
+                    if(i == response.businesses[0].categories.length-1) { 
+                        // then don't concat a comma
+                        cuisineString = cuisineString.concat(response.businesses[0].categories[i].alias);    
+                    }
+                    else { 
+                        // otherwise concat a comma
+                        cuisineString = cuisineString.concat(response.businesses[0].categories[i].alias).concat(",");
+                    }
+                } */
+                
+                // calls cuisineToRecipe and passes along params
                 api_obj.cuisineToRecipe(cuisineString, ingredients, exclude, health);
             });
         });
     },
+
 
     // input: type of cuisine (string), ingredients (array), ingredients to be excluded (array), and health preferences (array)
     // output: Returns an object with arrays of "hits" (e.g. recipes). Also saves this as a variable called resultObj
     cuisineToRecipe : function(cuisineString, ingredientArr, excludeArr, healthArr) {
 
         // console logs so that you know when the method is successfully called
-        console.log("Edamam query run");
+        console.log("Edamam call made");
 
-        // log the inputs
-        console.log("cuisineString: " + cuisineString + " ingredients: " + ingredientArr + " exclude: " + excludeArr + " health: " + healthArr);
-
-        excludeString = helper_func.arrUrl(excludeArr, 'exclude=');
-        healthString = helper_func.arrUrl(healthArr, 'health=');
-
-        var ingredientString = ingredientArr.join(' ')
+        ingredientString = helper_func.arrUrl(ingredientArr, '', ",");
+        excludeString = helper_func.arrUrl(excludeArr, 'exclude=', "&");
+        healthString = helper_func.arrUrl(healthArr, 'healthLabels=', "&");
+        
         var q = cuisineString + ingredientString;
         var from = 0;
         var to = 10;
 
         database.child('edamam').on('value', function(snapshot) {
 
-            console.log("excludeString: " + excludeString + " healthString: " + healthString);
-    
+            // grabs keys from firebase and creates URL
             var app_id = snapshot.val().app_id;
             var app_key = snapshot.val().app_key;
-  
-            // Can't get "health" to work for some reason. Keep getting 403. Maybe they stopped supporting?
-            // var queryURL = "https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=" + q + "&" + excludeString + "&" + healthString + "&from=" + from + "&to=" + to + "&app_id="+app_id+"&app_key="+app_key;
-            var queryURL = "https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=" + q + "&" + excludeString + "&from=" + from + "&to=" + to + "&app_id="+app_id+"&app_key="+app_key;
-            
+            var queryURL = "https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=" + q + excludeString + healthString + "&from=" + from + "&to=" + to + "&app_id="+app_id+"&app_key="+app_key;
+
             console.log("search string: " + queryURL);
     
             $.ajax({
@@ -120,10 +118,14 @@ var api_obj = {
                 method: "GET",                
             })
             .then(function(response) {
+                console.log("edamam response: ")
                 console.log(response);
+
+                // Hides the spinning wheel
                 $(".loader").hide();
+
+                // I also set a value for resultObj in case we want the result at the top-level
                 resultObj = response;
-                console.log("resultObj: " + resultObj);
                 return response; 
             });
         });
@@ -140,29 +142,25 @@ var helper_func = {
         return [...new Set(arr)];
     },
 
+
     // input: array and a set of characters (depending on which parameters of the query you're trying to build)
     // output: a string that can be used by the api_obj methods
-    arrUrl: function(arr, appendChar) {
+    arrUrl: function(arr, appendChar, delimiter) {
         var urlArr = this.arrDup(arr);
         var urlString = '';
-        urlString = appendChar + arr[0];
 
+        // if the array has more than 2 values
         if(urlArr.length > 1) {
+            urlString = delimiter + appendChar + arr[0];
             for(var i = 1; i < urlArr.length; i++) {
-                urlString += ('&' + appendChar + urlArr[i]);
+                urlString += (delimiter + appendChar + urlArr[i]);
             }
-            console.log("url: " + urlString);
             return urlString;
         }
-        else return appendChar + arr[0];
-    },
-/* 
-    undefinedToNull: function(value){
-        if (value === undefined) {
-            var newVal = [];
-            return newVal;
+        // if the array has no values
+        else if(arr[0] === undefined) {
+            return [];
         }
-    }
- */
-
+        else return delimiter + appendChar + arr[0];
+    },
 };
