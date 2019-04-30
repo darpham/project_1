@@ -19,8 +19,11 @@ $("#add-ingredient").on("click", function(event) {
 
     if (ingredient == "") {
         console.error("no ingredient specified");
+    } else if (ingredientsArr.includes(ingredient)) {
+        console.error("user already included that ingredient");
+        $("#ingredient-to-add").val("");
+        $("#ingredient-to-add").attr('placeholder',"Already included");
     } else {
-
         ingredientsArr.push(ingredient);
 
         var foodItem = $("<p>");
@@ -39,7 +42,7 @@ $("#add-ingredient").on("click", function(event) {
         $("#include-ingredients").append(foodItem);
     
         $("#ingredient-to-add").val("");
-    };
+    }
 
 });
 
@@ -50,8 +53,11 @@ $("#ex-ingredient").on("click", function(event) {
 
     if (ingredient == "") {
         console.error("no ingredient specified");
+    } else if (excludeArr.includes(ingredient)) {
+        console.error("user already included that ingredient to exclude");
+        $("#ingredient-to-exclude").val("");
+        $("#ingredient-to-exclude").attr('placeholder',"Already excluded");
     } else {
-
         excludeArr.push(ingredient);
 
         var foodItem = $("<p>");
