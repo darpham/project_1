@@ -1,6 +1,17 @@
 // File to grab inputs the user's preferences
 // This JS only interacts with result.html and will update the inputs variables needed for the api_calls.js
 
+// Global variables to pass into api_calls.js
+// Required
+var restaurant = "";
+var location = "San Francisco";
+
+// Optional filters
+var ingredients = [];
+var exclude = [];
+var health = [];
+
+
 // Listener to add ingredients the user wants to include the the recipe
 $("#add-ingredient").on("click", function(event) {
 
@@ -10,7 +21,7 @@ $("#add-ingredient").on("click", function(event) {
         console.error("no ingredient specified");
     } else {
 
-        ingredientsArr.push(ingredient);
+        ingredients.push(ingredient);
 
         var foodItem = $("<p>");
 
@@ -41,7 +52,7 @@ $("#ex-ingredient").on("click", function(event) {
         console.error("no ingredient specified");
     } else {
 
-        excludeArr.push(ingredient);
+        exclude.push(ingredient);
 
         var foodItem = $("<p>");
 
@@ -92,7 +103,7 @@ $('#health-search').on('click', function() {
 
         if ($(this).children('input').is(':checked')) {
 
-            healthArr.push($(this).children('input').attr('value'));
+            health.push($(this).children('input').attr('value'));
             console.log("HERERERERERER: " + healthArr);
         }
 
