@@ -62,6 +62,7 @@ var api_obj = {
                     }
                     else if (callType == "onclick") {
                         console.log("onclick")
+                        console.log(data);
 
                         // Option 1: Will loop through only the first two items. Sometimes gets better results
                         var j = 0;
@@ -131,11 +132,7 @@ var api_obj = {
                 $(".loader").hide();
 
                 // I also set a value for resultObj in case we want the result at the top-level
-                resultObj = response;
-
-                // console.log("resultObj: " + resultObj)
-
-                //success: callback
+                // resultObj = response;
             });
         });
     }};
