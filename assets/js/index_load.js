@@ -37,7 +37,7 @@ $("#search").on("click", function() {
     event.preventDefault();
 
     // navigates the user while manipulating the URL
-    window.location.href = "result.html?restaurantstr=" + $("#restaurant-search").val() + "&" + "locationstr=SanFrancisco"
+    window.location.href = "result.html?restaurantstr=" + $("#restaurant-search-index").val() + "&" + "locationstr=SanFrancisco"
 });
 
 
