@@ -74,3 +74,7 @@ p {
 .fa-filter, .fa-search {
     font-size: 40px;
 }
+
+#health-search {
+    list-style-type: none;
+}
