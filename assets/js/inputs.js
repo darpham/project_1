@@ -34,7 +34,7 @@ $("#add-ingredient").on("click", function(event) {
         var foodDelete = $("<button>");
     
         foodDelete.attr("ingredient", ingredient);
-        foodDelete.addClass('delete');
+        foodDelete.addClass('delete in');
         foodDelete.text("x");
         
         foodItem = foodItem.prepend(foodDelete);
@@ -68,7 +68,7 @@ $("#ex-ingredient").on("click", function(event) {
         var foodDelete = $("<button>");
     
         foodDelete.attr("ingredient", ingredient);
-        foodDelete.addClass('delete');
+        foodDelete.addClass('delete ex');
         foodDelete.text("x");
         
         foodItem = foodItem.prepend(foodDelete);
@@ -85,8 +85,20 @@ $(document.body).on("click", ".delete", function() {
 
     var ingredient = $(this).attr("ingredient");
 
-    var parent = $(this).parent().attr("id");
+    // removes the ingredient from the correct array in the backend
+    if ($(this).hasClass("ex")) {
+        var i = excludeArr.indexOf(ingredient)
+        if (i != -1) {
+            excludeArr.splice(i, 1);
+        }
+    } else if ($(this).hasClass("in")) {
+        var i = ingredientsArr.indexOf(ingredient)
+        if (i != -1) {
+            ingredientsArr.splice(i, 1);
+        }
+    };
 
+    // removes the p from results.html
     $(this).closest('p').remove();
 });
 
