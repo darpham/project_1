@@ -1,4 +1,10 @@
+// 1. Pulls data on default restaurants
+// 2. If the user inputs a restaurant, it navigates them to results and passes parameters
+// 3. If the user inputs a restaurant, it navigates them to results and passes parameters
 
+
+
+// Default restaurants
 var default_settings = {
     fav_restaurants : ["akikos", "souvla", "cocobang","tonys pizza"
         ,"la taqueria","woodhouse fish company", "osha", 'mcdonalds'],
@@ -6,15 +12,13 @@ var default_settings = {
   };
 
 
-// On document load, makes a call to get the default restaurants
+
+// 1. On document load, makes a call to get the default restaurants
 $(document).ready(function(){
 
-    // When the index.html loads, this calls the API so that we can get default "popular" recipes to show
-    // NOTE: Default API call doesn't need optional parameters    
     function pageloadCallback(result) {
         console.log("")
         console.log(result);
-
 // --------------------------------------------------------------------------------
         // Add functionality to display recommended restaurants
 // --------------------------------------------------------------------------------
@@ -32,7 +36,8 @@ $(document).ready(function(){
 });
 
 
-// When the user types in a restaurant and clicks search, this moves the user to results and passes param via the url
+
+// 2. When the user types in a restaurant and clicks search, this moves the user to results and passes param via the url
 $("#search").on("click", function() {
     event.preventDefault();
 
@@ -42,12 +47,10 @@ $("#search").on("click", function() {
 
 
 
+// 3. When the user clicks an image, it moves them to results
 // --------------------------------------------------------------------------------
         // Add functionality to navigate the user when they click on an image of a restaurant
 // --------------------------------------------------------------------------------
-
-// When the user clicks an image, it moves them to results
-// this needs to be revised so it works with images correctly
 $(".restaurant-image").on("click", function() {
     event.preventDefault();
 
