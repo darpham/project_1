@@ -22,7 +22,7 @@ var api_obj = {
 
     // Inputs: takes in a single restaurant (string), and single location (string, e.g. San Francisco), Expects values, not an array or jquery object
     // Outputs: a string (cuisine)
-    yelpToCuisine : function(restaurant, location, ingredients, exclude, health) {
+    yelpToCuisine : function(restaurant, location, ingredients, exclude, health, callback, callType) {
         
         // console logs so that you know when the method is successfully called
         console.log("yelp call made");
@@ -55,35 +55,47 @@ var api_obj = {
                 method: "GET",                
                 dataType: 'json',
                 headers: {'Authorization': yelpHeaders,},
+                success: function (data) {
+                    if(callType == "pageload") {
+                        console.log("callback?!?")
+                        callback(data);
+                    }
+                    else if (callType == "onclick") {
+                        
+                        // Option 1: Will loop through only the first two items. Sometimes gets better results
+                        var j = 0;
+                        if(response.businesses[0].categories.length == 1){
+                            cuisineString = response.businesses[0].categories[0].alias}
+                        else {
+                            cuisineString = response.businesses[0].categories[0].alias + "," + response.businesses[0].categories[1].alias
+                        };
+                
+                        // Option 2: Will loop through all items
+            /*                 for(var i = 0; i < response.businesses[0].categories.length; i++) {
+                            // if current iteration is at the end of the list...
+                            if(i == response.businesses[0].categories.length-1) { 
+                                // then don't concat a comma
+                                cuisineString = cuisineString.concat(response.businesses[0].categories[i].alias);    
+                            }
+                            else { 
+                                // otherwise concat a comma
+                                cuisineString = cuisineString.concat(response.businesses[0].categories[i].alias).concat(",");
+                            }
+                        } */
+                        
+                        // calls cuisineToRecipe and passes along params
+
+                        api_obj.cuisineToRecipe(cuisineString, ingredients, exclude, health, callback)
+                    }
+
+                }
             })
             .then(function(response) {
 
                 console.log("yelp response: ");
                 console.log(response);
 
-                // Option 1: Will loop through only the first two items. Sometimes gets better results
-                var j = 0;
-                if(response.businesses[0].categories.length == 1){
-                    cuisineString = response.businesses[0].categories[0].alias}
-                else {
-                    cuisineString = response.businesses[0].categories[0].alias + "," + response.businesses[0].categories[1].alias
-                };
-        
-                // Option 2: Will loop through all items
-/*                 for(var i = 0; i < response.businesses[0].categories.length; i++) {
-                    // if current iteration is at the end of the list...
-                    if(i == response.businesses[0].categories.length-1) { 
-                        // then don't concat a comma
-                        cuisineString = cuisineString.concat(response.businesses[0].categories[i].alias);    
-                    }
-                    else { 
-                        // otherwise concat a comma
-                        cuisineString = cuisineString.concat(response.businesses[0].categories[i].alias).concat(",");
-                    }
-                } */
-                
-                // calls cuisineToRecipe and passes along params
-                api_obj.cuisineToRecipe(cuisineString, ingredients, exclude, health);
+                // return response
             });
         });
     },
@@ -91,7 +103,7 @@ var api_obj = {
 
     // input: type of cuisine (string), ingredients (array), ingredients to be excluded (array), and health preferences (array)
     // output: Returns an object with arrays of "hits" (e.g. recipes). Also saves this as a variable called resultObj
-    cuisineToRecipe : function(cuisineString, ingredientArr, excludeArr, healthArr) {
+    cuisineToRecipe : function(cuisineString, ingredientArr, excludeArr, healthArr, callback) {
 
         // console logs so that you know when the method is successfully called
         console.log("Edamam call made");
@@ -115,18 +127,21 @@ var api_obj = {
     
             $.ajax({
                 url: queryURL,
-                method: "GET",                
+                method: "GET",  
+                success: callback
             })
             .then(function(response) {
                 console.log("edamam response: ")
-                console.log(response);
 
                 // Hides the spinning wheel
                 $(".loader").hide();
 
                 // I also set a value for resultObj in case we want the result at the top-level
                 resultObj = response;
-                return response; 
+
+                // console.log("resultObj: " + resultObj)
+
+                //success: callback
             });
         });
     }};
