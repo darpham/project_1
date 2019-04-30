@@ -22,6 +22,7 @@ $(document).ready(function(){
 // --------------------------------------------------------------------------------
         // Add functionality to display recommended restaurants
 // --------------------------------------------------------------------------------
+        dom_manipulation.addSuggestions(result.businesses);
     };
 
     api_obj.yelpToCuisine (
@@ -51,11 +52,17 @@ $("#search").on("click", function() {
 // --------------------------------------------------------------------------------
         // Add functionality to navigate the user when they click on an image of a restaurant
 // --------------------------------------------------------------------------------
-$(".restaurant-image").on("click", function() {
-    event.preventDefault();
+$(".suggested-rest").on("click", function() {
+    // event.preventDefault();
+
+    // Updates the restaurantStr and restaruant searchbox on results.html
+    restaurantStr = $(this).attr('restaurant');
+    console.log(this);
+    $('#restaurant-search-index').val($(this).attr('restaurant'));
 
     // this line in particular wouldn't work
     // navigates the user while manipulating the URL
-    window.location.href = "result.html?restaurantstr=" + $("#restaurant-img").val() + "&" + "locationstr=SanFrancisco"
+    window.location.href = "/result.html";
     
 });
+
