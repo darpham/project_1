@@ -3,13 +3,13 @@
 
 // Global variables to pass into api_calls.js
 // Required
-var restaurant = "";
-var location = "San Francisco";
+var restaurantstr = "";
+var locationStr = "San Francisco";
 
 // Optional filters
-var ingredients = [];
-var exclude = [];
-var health = [];
+var ingredientsArr = [];
+var excludeArr = [];
+var healthArr = [];
 
 
 // Listener to add ingredients the user wants to include the the recipe
@@ -21,7 +21,7 @@ $("#add-ingredient").on("click", function(event) {
         console.error("no ingredient specified");
     } else {
 
-        ingredients.push(ingredient);
+        ingredientsArr.push(ingredient);
 
         var foodItem = $("<p>");
 
@@ -52,7 +52,7 @@ $("#ex-ingredient").on("click", function(event) {
         console.error("no ingredient specified");
     } else {
 
-        exclude.push(ingredient);
+        excludeArr.push(ingredient);
 
         var foodItem = $("<p>");
 
@@ -103,7 +103,7 @@ $('#health-search').on('click', function() {
 
         if ($(this).children('input').is(':checked')) {
 
-            health.push($(this).children('input').attr('value'));
+            healthArr.push($(this).children('input').attr('value'));
             console.log("HERERERERERER: " + healthArr);
         }
 
