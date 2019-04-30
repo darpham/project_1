@@ -57,17 +57,18 @@ var api_obj = {
                 headers: {'Authorization': yelpHeaders,},
                 success: function (data) {
                     if(callType == "pageload") {
-                        console.log("callback?!?")
+                        console.log("pageload")
                         callback(data);
                     }
                     else if (callType == "onclick") {
-                        
+                        console.log("onclick")
+
                         // Option 1: Will loop through only the first two items. Sometimes gets better results
                         var j = 0;
-                        if(response.businesses[0].categories.length == 1){
-                            cuisineString = response.businesses[0].categories[0].alias}
+                        if(data.businesses[0].categories.length == 1){
+                            cuisineString = data.businesses[0].categories[0].alias}
                         else {
-                            cuisineString = response.businesses[0].categories[0].alias + "," + response.businesses[0].categories[1].alias
+                            cuisineString = data.businesses[0].categories[0].alias + "," + data.businesses[0].categories[1].alias
                         };
                 
                         // Option 2: Will loop through all items
@@ -84,18 +85,11 @@ var api_obj = {
                         } */
                         
                         // calls cuisineToRecipe and passes along params
-
                         api_obj.cuisineToRecipe(cuisineString, ingredients, exclude, health, callback)
                     }
-
                 }
             })
             .then(function(response) {
-
-                console.log("yelp response: ");
-                console.log(response);
-
-                // return response
             });
         });
     },
