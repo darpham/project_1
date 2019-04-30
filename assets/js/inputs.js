@@ -1,6 +1,17 @@
 // File to grab inputs the user's preferences
 // This JS only interacts with result.html and will update the inputs variables needed for the api_calls.js
 
+// Global variables to pass into api_calls.js
+// Required
+var restaurantstr = "";
+var locationStr = "San Francisco";
+
+// Optional filters
+var ingredientsArr = [];
+var excludeArr = [];
+var healthArr = [];
+
+
 // Listener to add ingredients the user wants to include the the recipe
 $("#add-ingredient").on("click", function(event) {
 
