@@ -17,6 +17,15 @@ var healthArr = [];
 // 
 
 // updates restaurant search field everytime a user presses a new key in the input field
+// ** There are 2 for the both search boxes **
+
+// for restaurant searchbox on index.html
+$('#restaurant-search-index').on('input',function() {
+    // grabs current value in restaurant search input and assigns it to our global string
+    restaurantStr = $('#restaurant-search-index').val().trim();
+});
+
+// For restaurant searchbox on results.html
 $('#restaurant-search-result').on('input',function() {
     // grabs current value in restaurant search input and assigns it to our global string
     restaurantStr = $('#restaurant-search-result').val().trim();
