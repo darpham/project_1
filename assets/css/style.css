@@ -32,6 +32,7 @@ body {
     width: 250px;
     height: 200px;
     margin-top: 40px;
+    cursor: pointer;
     }
 h4 {
     position: absolute;
@@ -46,6 +47,7 @@ h4 {
     background: #4aaaa5;
     border-bottom: 0;
     opacity: 0.8;
+    cursor: pointer;
     }
 .em-fire, .em-star {
     margin-left: 10px;
@@ -93,4 +95,9 @@ p {
 }
 .delete {
     background: orange;
+}
+
+/* class to hide/un-hide certain divs until needed */
+.hidden {
+    display: none;
 }
