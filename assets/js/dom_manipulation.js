@@ -9,7 +9,7 @@ dom_manipulation = {
             var suggestion = $('<div>');
             suggestion.addClass('col-md-4 suggested');
             suggestion.append('<img class="imgportf suggested-rest" restaurant=' +business.name+ ' src="' +business.image_url+ '" />');
-            suggestion.append('<h4 class="suggested-rest" restaurant=' +business.name+ ' >' +business.name+ '</h4>');
+            suggestion.append('<h5 class="suggested-rest" restaurant=' +business.name+ ' >' +business.name+ '</h5>');
             $('#suggestions').append(suggestion);
         });
 
