@@ -52,7 +52,7 @@ $("#search").on("click", function() {
 // --------------------------------------------------------------------------------
         // Add functionality to navigate the user when they click on an image of a restaurant
 // --------------------------------------------------------------------------------
-$(".suggested-rest").on("click", function() {
+    $(document).on("click", '.suggested', function() {
     // event.preventDefault();
 
     // Updates the restaurantStr and restaruant searchbox on results.html
@@ -62,7 +62,7 @@ $(".suggested-rest").on("click", function() {
 
     // this line in particular wouldn't work
     // navigates the user while manipulating the URL
-    window.location.href = "/result.html";
+    window.location.href = "result.html?";
     
 });
 
