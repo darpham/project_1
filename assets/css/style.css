@@ -32,7 +32,7 @@ body {
     height: 50px;
 }
 .input-group {
-    width: 1000px;
+    width: 95%;
     align-content: center;
 }
 .em-mag {
@@ -124,4 +124,10 @@ footer {
 }
 h1 {
     font-family: 'Sofia', cursive;
+}
+#loading {
+    margin-bottom: 30px;
+}
+.mr-2 {
+    font-size: 12px;
 }

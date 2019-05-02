@@ -162,7 +162,9 @@ for (var i=0; i < dietary_restrictions.length; i++) {
     var restriction = $('<li>');
 
     // adds checkbox
+    restriction.addClass('mr-2');
     restriction.html('<input type="checkbox" class="mr-1" value="' + dietary_restrictions[i] + '">');
+    
 
     // adds text via append, this is important as to not overwrite the checkbox created above
     restriction.append(dietary_restrictions[i]);
