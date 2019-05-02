@@ -2,22 +2,18 @@
 // 2. Helper function to get URL params
 // 3. Takes in new filters and hits API
 
-
-var restaurantParam = "";
-var locationParam = "";
-
 // 1. Looks for params in URL and hits API
 // NOTE: we could theoretically run all calls through this
 $(document).ready(function(){
 
-    // Looks at the url and grabs the param for restaurant + location
-    getParams();
-    console.log("restaurant: " + restaurantParam);
-    console.log("location: " + locationParam);
+    // Looks at the url and grabs the param for restaurant + location from local storage
+
+    console.log("restaurant: " + localStorage.getItem('restaurant'));
+    console.log("location: " + localStorage.getItem('location'));
 
     api_obj.yelpToCuisine(
-        restaurantParam
-        , locationParam
+        localStorage.getItem('restaurant')
+        , localStorage.getItem('location')
         , [] // ["kale", "lettuce", "tomato"] // - ingredients
         , [] // ["kiwi", "pineapple"] // - exclusion
         , [] // ['peanut-free'] // - healthLabels
@@ -33,23 +29,8 @@ $(document).ready(function(){
     };
 });
 
-
-
-// 2. Param helper function
-function getParams() {
-    var urlParams = new URLSearchParams(window.location.search);
-    restaurantParam = urlParams.get('restaurantstr');
-    locationParam = urlParams.get('locationstr');
-    console.log(restaurantParam);
-    // return myParam
-}
-
-
-
 // 3. Takes in new filters and hits API
 $(".searchfa").on("click", function() {
-
-    var restaurant = getParams();
 
     function onclickCallback(result) {
         console.log("onclick callback" + result);
