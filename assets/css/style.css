@@ -117,6 +117,7 @@ footer {
 }
 .delete {
     background: rgb(161, 2, 2);
+    font-size: 10px;
 }
 /* class to hide/un-hide certain divs until needed */
 .hidden {
@@ -129,5 +130,20 @@ h1 {
     margin-bottom: 30px;
 }
 .mr-2 {
-    font-size: 12px;
+    font-size: 13px;
+    font-family: 'Sofia', cursive;
+}
+.inglist {
+    margin-top: 3px;
+    background-color: white;
+    margin-bottom: 3px;
+    font-size: 11px;
+    width: 62%;
+}
+.name {
+    width: 42%;
+    margin-top: 5px;
+    margin-left: 20%;
+    font-family: 'Sofia', cursive;
+    border-bottom: 1px solid #f47c7c; 
 }

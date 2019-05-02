@@ -45,7 +45,6 @@ $('#location-search').on('input',function() {
 
 // Listener to add ingredients the user wants to include the the recipe
 $('#add-ingredient').on('click', function() {
-
     // Parses ingredient name from text box input
     var ingredient = $('#ingredient-to-add').val().trim();
     console.log("ingredient include: " + ingredient)
@@ -71,7 +70,7 @@ $('#add-ingredient').on('click', function() {
         var foodItem = $('<p>');
         foodItem.attr('id', ingredient);
         foodItem.text(ingredient);
-    
+        foodItem.addClass("inglist");
         // creates button to delete ingredient if users wants
         var foodDelete = $('<button>');
         foodDelete.attr('ingredient', ingredient);
@@ -81,7 +80,6 @@ $('#add-ingredient').on('click', function() {
     
         // adds newly created ingredient to html
         $('#include-ingredients').append(foodItem);
-    
         // Updates placeholder and clears textbox
         $('#ingredient-to-add').attr('placeholder',"Ingredients");
         $('#ingredient-to-add').val('');
@@ -118,6 +116,7 @@ $('#ex-ingredient').on('click', function(event) {
         var foodItem = $('<p>');
         foodItem.attr('id', ingredient);
         foodItem.text(ingredient);
+        foodItem.addClass("inglist");
     
         // creates button to delete item if no longer wanted
         var foodDelete = $('<button>');
