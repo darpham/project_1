@@ -11,80 +11,86 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sofia" rel="stylesheet">
     <title>Yelp El-Eat</title>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 title">
-                <h1><a href=index.html><i class="em em-knife_fork_plate"></i></a>Yelp El-Eat</h1>
+    <div class="background-div">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 title">
+                    <h1><a href=index.html><i class="em em-knife_fork_plate"></i></a>Yelp El-Eat</h1>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 search">
-                <form id="searchinfo">
-                    <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                    <span class="input-group-text one">Find:</span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Search any restaurant..." name="restaurant" id="restaurant-search-result" required>
-                    <span class="input-group-text one"><i class="material-icons" style="font-size:36px">add_location</i>Near:</span>
-                    <input type="text" class="form-control" id="location-search" name="location" value="San Francisco">
-                    <button type="submit" class="searchfa"><i class="fa fa-search"></i></button>
-                    </div>  
-                <!-- Spinner gif when loading -->
-                <pre id="content" style="white-space: pre-wrap;"></pre>
-                <div class="loader" style="display:none"></div>
-                </form>   
+            <div class="row">
+                <div class="col-lg-12 search">
+                    <form id="searchinfo">
+                        <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text one">Find:</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search any restaurant..." name="restaurant" id="restaurant-search-result" required>
+                        <span class="input-group-text one"><i class="material-icons" style="font-size:36px">add_location</i>Near:</span>
+                        <input type="text" class="form-control" id="location-search" name="location" value="San Francisco">
+                        <button type="submit" class="searchfa"><i class="fa fa-search"></i></button>
+                        </div>  
+                    <!-- Spinner gif when loading -->
+                    <pre id="content" style="white-space: pre-wrap;"></pre>
+                    <div class="loader" style="display:none"></div>
+                    </form>   
+                </div>
             </div>
-        </div>
         
-        <div class="row justify-content-center no-gutters">
-            <div class="col-lg-1">
-            </div>
-            <div class="col-lg-1">
-                <i class="fa fa-filter"></i>
-            </div>
-            <div class="col-lg-3">
-                <form>
-                    <span>
-                        <input id="ingredient-to-add" type="text" placeholder="Ingredients" spellcheck="true">
-                        <input id="add-ingredient" value="Add" type="button">
-                    </span>
-                </form>
-                
-                <div id="include-ingredients">
-                    <!-- included ingredients will be added here -->
+            <div class="row justify-content-center no-gutters">
+                <div class="col-lg-1">
                 </div>
-            </div>
-
-            <div class="col-lg-3">
-                <form>
-                    <span>
-                        <input id="ingredient-to-exclude" type="text" placeholder="Exclude Ing" spellcheck="true">
-                        <input id="ex-ingredient" value="Add" type="button">
-                    </span>
-                </form>
-                
-                <div id="exclude-ingredients">
-                    <!-- included ingredients will be added here -->
+                <div class="col-lg-1">
+                    <i class="fa fa-filter"></i>
                 </div>
-            </div>
-
-            <div class="col-lg-3">
-                <div style="width: 200px; height: 100px; overflow-y: scroll;">
-                    <ul class="multiselect-container" id="health-search" >
-                    <!-- List of dietary resitrictions created via inputs.js -->
-
-
-                    </ul>
+                <div class="col-lg-3">
+                    <form>
+                        <span>
+                            <input id="ingredient-to-add" type="text" placeholder="Ingredients" spellcheck="true">
+                            <input id="add-ingredient" value="Add" type="button">
+                        </span>
+                    </form>
+                    
+                    <div id="include-ingredients">
+                        <!-- included ingredients will be added here -->
+                    </div>
                 </div>
-            </div>   
-            <div class="col-lg-1">
-            </div>  
+
+                <div class="col-lg-3">
+                    <form>
+                        <span>
+                            <input id="ingredient-to-exclude" type="text" placeholder="Exclude Ing" spellcheck="true">
+                            <input id="ex-ingredient" value="Add" type="button">
+                        </span>
+                    </form>
+                    
+                    <div id="exclude-ingredients">
+                        <!-- included ingredients will be added here -->
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div style="width: 200px; height: 100px; overflow-y: scroll;">
+                        <ul class="multiselect-container" id="health-search" >
+                        <!-- List of dietary resitrictions created via inputs.js -->
+
+
+                        </ul>
+                    </div>
+                </div>   
+                <div class="col-lg-1">
+                </div>  
+            </div>
+            <br>
         </div>
-
-        <div class="row"><p>Results:</p></div>
+    </div>
+    <div class="container">
+        <br><br>
+        <div class="row"><p class="res">Results:</p></div>
         <div class="row">
             <div class="col-md-4 results">
                 <img src="assets/images/burger.jpg" class="imgportf" alt="Hot">
@@ -112,6 +118,7 @@
             </div>
         </div>
     </div>
+
 <footer>
    <h6>Copyright &copy;</h6>
 </footer>

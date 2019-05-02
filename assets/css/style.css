@@ -8,7 +8,6 @@ body {
     height: auto;
     background-color: #FFEDED;
 }
-
 .container {
     margin: 0 auto;
 }
@@ -26,18 +25,15 @@ body {
    margin-top: 20px;
    margin-left: 80px;
 }
-
 #restaurant-search-index {
     border-radius: 30px;
     box-shadow: 0px 3px 5px 0px rgb(172, 165, 165);
     background: #fff;
     height: 50px;
 }
-
 .input-group {
     width: 1000px;
     align-content: center;
-    
 }
 .em-mag {
     margin-left: 5px;
@@ -51,22 +47,22 @@ body {
     opacity: .85;
     box-shadow: 1px 5px 8px 2px rgb(172, 165, 165);
     background: #fff;
-    }
+}
 h4, h5 {
     position: absolute;
     bottom: 10px;
-    padding: 15px;
+    padding: 10px;
     margin-bottom: 0;
     margin-left: 30px;
     width: 250px;
     line-height: 30px;
-    color: yellow;
     text-align: center;
-    background: #4aaaa5;
+    background: #f47c7c;
+    font-family: 'Indie Flower', cursive;
     border-bottom: 0;
     opacity: 0.8;
     cursor: pointer;
-    }
+}
 .em-fire, .em-star {
     margin-left: 10px;
 }
@@ -74,14 +70,15 @@ footer {
     padding: 10px 0;
     clear: both;
     font-size: 8px;
-    color: #ffffff;
+    color: #FFEDED;
     text-align: center;
     margin-top: 30px;
-    }     
-p {
+}     
+.res {
     margin-left: 40px;
-    font-size: 25px;
+    font-size: 30px;
     margin-bottom: 0px;
+    font-family: 'Sofia', cursive;
 }
 #instructions {
     margin: auto;
@@ -96,7 +93,7 @@ p {
     margin-bottom: 30px;
 }
 .add-btn, .searchfa, .one {
-    background: #4aaaa5;
+    background: #f47c7c;
 }
 .fa-filter, .fa-search {
     font-size: 40px;
@@ -112,17 +109,19 @@ p {
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-    background: #4aaaa5; 
+    background: #f47c7c; 
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: orange; 
+    background: rgb(161, 2, 2); 
 }
 .delete {
-    background: orange;
+    background: rgb(161, 2, 2);
 }
-
 /* class to hide/un-hide certain divs until needed */
 .hidden {
     display: none;
+}
+h1 {
+    font-family: 'Sofia', cursive;
 }
