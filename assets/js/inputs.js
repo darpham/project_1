@@ -12,12 +12,6 @@ localStorage.setItem('ingredients', '[]')
 localStorage.setItem('exclude', '[]')
 localStorage.setItem('health', '[]')
 
-console.log(localStorage.getItem('restaurant'));
-console.log(localStorage.getItem('location'));
-console.log(localStorage.getItem('ingredients'));
-console.log(localStorage.getItem('exclude'));
-console.log(localStorage.getItem('health'));
-
 // 
 // jQuery and JavaScript for restaurant and location
 // 
