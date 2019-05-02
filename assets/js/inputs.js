@@ -11,6 +11,7 @@ localStorage.setItem('health', []);
 // global vars for filters for ability to update via this inputs.js file
 ingredientsArr = [];
 excludeArr = [];
+console.log("HERERERERE: "+ typeof(excludeArr))
 
 // 
 // jQuery and JavaScript for restaurant and location
@@ -106,7 +107,11 @@ $('#ex-ingredient').on('click', function(event) {
 
     // adds the ingredient to global variable and html
     } else {
+        console.log("excluded ingredient: " + ingredient)
+        console.log(typeof(ingredient))
         excludeArr.push(ingredient);
+        console.log("excluded array: " + excludeArr)
+        console.log(typeof(excludeArr))
         localStorage.setItem('exclude', excludeArr);
 
         // creates p with ingredient info

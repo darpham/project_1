@@ -44,4 +44,4 @@ dom_manipulation = {
         $('#loading').addClass('hidden');
         $('#suggested-recipes').removeClass('hidden');
     }
-}; 
+};
