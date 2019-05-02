@@ -2,15 +2,14 @@
 // 2. If the user inputs a restaurant, it navigates them to results and passes parameters
 // 3. If the user inputs a restaurant, it navigates them to results and passes parameters
 
-
-
 // Default restaurants
 var default_settings = {
     fav_restaurants : ["akikos", "souvla", "cocobang","tonys pizza"
         ,"la taqueria","woodhouse fish company", "osha", 'mcdonalds'],
-    default_location: "san francisco"
 };
 
+// Setting default location
+localStorage.setItem('location', 'San Francisco');
 
 
 // 1. On document load for index.html, makes a call to get the default restaurants
@@ -26,7 +25,7 @@ $(document).ready(function(){
 
     api_obj.yelpToCuisine (
         default_settings.fav_restaurants[Math.floor(Math.random()*default_settings.fav_restaurants.length)]
-        , default_settings.default_location
+        , localStorage.getItem('location')
         , [] 
         , [] 
         , [] 
@@ -41,6 +40,7 @@ $(document).ready(function(){
 $("#search").on("click", function() {
     event.preventDefault();
 
+    // Updated locat storage with the restaurant user inputed
     localStorage.setItem('restaurant', $('#restaurant-search-index').val().trim());
 
     // navigates the user while manipulating the URL
@@ -53,7 +53,7 @@ $("#search").on("click", function() {
 $(document).on('click', '.suggested-rest', function() {
     event.preventDefault();
 
-    // Updates the restaurantStr and restaruant searchbox on results.html
+    // Updated locat storage with the restaurant user clicked on
     localStorage.setItem('restaurant', $(this).attr('restaurant'));
 
     // navigates the user while manipulating the URL

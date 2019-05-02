@@ -1,18 +1,16 @@
 // File to grab inputs the user's preferences
 // This JS only interacts with result.html and will update the inputs variables needed for the api_calls.js
 
-// Local storage variables to pass into api_calls.js
-// Required
-
-// localStorage.setItem('restaurant', '')
-localStorage.setItem('location', 'San Francisco')
+// ** Local storage variables created in index_load.js **
 
 // Optional filters
-localStorage.setItem('ingredients', [])
-localStorage.setItem('exclude', [])
-localStorage.setItem('health', [])
+localStorage.setItem('ingredients', []);
+localStorage.setItem('exclude', []);
+localStorage.setItem('health', []);
 
-
+// global vars for filters for ability to update via this inputs.js file
+ingredientsArr = [];
+excludeArr = [];
 
 // 
 // jQuery and JavaScript for restaurant and location
@@ -36,7 +34,7 @@ $('#restaurant-search-result').on('input',function() {
 // updates location search field everytime a user presses a new key in the input field
 $('#location-search').on('input',function() {
     // grabs current value in restaurant search input and assigns it to our global string
-    locationStr = $('#location-search').val().trim();
+    localStorage.setItem('restaurant', $('#location-search').val().trim());
 });
 
 
@@ -45,10 +43,11 @@ $('#location-search').on('input',function() {
 // 
 
 // Listener to add ingredients the user wants to include the the recipe
-$('#add-ingredient').on('click', function(event) {
+$('#add-ingredient').on('click', function() {
 
     // Parses ingredient name from text box input
     var ingredient = $('#ingredient-to-add').val().trim();
+    console.log("ingredient include: " + ingredient)
 
     // Checks if user left box empty
     if (ingredient == '') {
@@ -64,6 +63,8 @@ $('#add-ingredient').on('click', function(event) {
 
         // pushes ingredient into global variable
         ingredientsArr.push(ingredient);
+        // pushes newly updated ingredients into local storage
+        localStorage.setItem('ingredients', ingredientsArr)
 
         // creates p to hold ingredient info
         var foodItem = $('<p>');
@@ -106,6 +107,7 @@ $('#ex-ingredient').on('click', function(event) {
     // adds the ingredient to global variable and html
     } else {
         excludeArr.push(ingredient);
+        localStorage.setItem('exclude', excludeArr);
 
         // creates p with ingredient info
         var foodItem = $('<p>');
@@ -140,11 +142,15 @@ $(document.body).on('click', '.delete', function() {
         var i = excludeArr.indexOf(ingredient)
         if (i != -1) {
             excludeArr.splice(i, 1);
+            // pushes newly updated excludes list into local storage
+            localStorage.setItem('exclude', excludeArr);
         };
     } else if ($(this).hasClass('in')) {
         var i = ingredientsArr.indexOf(ingredient)
         if (i != -1) {
             ingredientsArr.splice(i, 1);
+            // pushes newly updated ingredients into local storage
+            localStorage.setItem('ingredients', ingredientsArr)
         };
     };
 
@@ -188,6 +194,7 @@ $('#health-search').on('click', function() {
             // adds the item to newly cleared health array
             healthArr.push($(this).children('input').attr('value'));
         };
+        localStorage.setItem('health', healthArr);
     });
 
 });
