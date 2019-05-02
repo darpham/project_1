@@ -103,10 +103,13 @@ var api_obj = {
         // console logs so that you know when the method is successfully called
         console.log("Edamam call made");
 
+        console.log("excludeString1 " + excludeArr);
         ingredientString = helper_func.arrUrl(ingredientArr, '', ",");
         excludeString = helper_func.arrUrl(excludeArr, 'exclude=', "&");
         healthString = helper_func.arrUrl(healthArr, 'healthLabels=', "&");
-        
+        console.log("excludeString2: " + excludeString);
+
+
         var q = cuisineString + ingredientString;
         var from = 0;
         var to = 10;
@@ -155,6 +158,8 @@ var helper_func = {
         var urlArr = this.arrDup(arr);
         var urlString = '';
 
+        console.log("testarr");
+        console.log(arr);
         // if the array has more than 2 values
         if(urlArr.length > 1) {
             urlString = delimiter + appendChar + arr[0];
@@ -164,7 +169,7 @@ var helper_func = {
             return urlString;
         }
         // if the array has no values
-        else if(arr[0] === undefined) {
+        else if(arr[0] == undefined) {
             return [];
         }
         else return delimiter + appendChar + arr[0];

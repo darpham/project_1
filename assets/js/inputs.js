@@ -4,13 +4,15 @@
 // Local storage variables to pass into api_calls.js
 // Required
 
-localStorage.setItem('restaurant', '')
+// localStorage.setItem('restaurant', '')
 localStorage.setItem('location', 'San Francisco')
 
 // Optional filters
-localStorage.setItem('ingredients', '[]')
-localStorage.setItem('exclude', '[]')
-localStorage.setItem('health', '[]')
+localStorage.setItem('ingredients', [])
+localStorage.setItem('exclude', [])
+localStorage.setItem('health', [])
+
+
 
 // 
 // jQuery and JavaScript for restaurant and location
