@@ -32,7 +32,7 @@
                         <input type="text" class="form-control" placeholder="Search any restaurant..." name="restaurant" id="restaurant-search-result" required>
                         <span class="input-group-text one"><i class="material-icons" style="font-size:36px">add_location</i>Near:</span>
                         <input type="text" class="form-control" id="location-search" name="location" value="San Francisco">
-                        <button type="submit" class="searchfa" id="result-search-button"><i class="fa fa-search"></i></button>
+                        <button type="button" class="searchfa" id="result-search-button"><i class="fa fa-search"></i></button>
                         </div>  
                     <!-- Spinner gif when loading -->
                     <pre id="content" style="white-space: pre-wrap;"></pre>
@@ -91,31 +91,12 @@
     <div class="container">
         <br><br>
         <div class="row"><p class="res">Results:</p></div>
-        <div class="row">
-            <div class="col-md-4 results">
+        <div class="row hidden" id="suggested-recipes">
+            <!-- example div recipes created via dom_manipulation.addRecips (dom_manipulation.js) -->
+            <!-- <div class="col-md-4 results">
                 <img src="assets/images/burger.jpg" class="imgportf" alt="Hot">
                 <h4><i class="em em-fire"></i></h4>
-            </div>
-            <div class="col-md-4 results">
-                <img src="assets/images/dog.jpg" class="imgportf" alt="New">
-                <h4><i class="em em-new"></i></h4>
-            </div>
-            <div class="col-md-4 results">
-                <img src="assets/images/bread.jpg" class="imgportf" alt="Top"></a>
-                <h4><i class="em em-star"></i></h4>
-            </div>
-            <div class="col-md-4 results">
-                <img src="assets/images/dog.jpg" class="imgportf" alt="New">
-                <h4><i class="em em-new"></i></h4>
-            </div>
-            <div class="col-md-4 results">
-                <img src="assets/images/bread.jpg" class="imgportf" alt="Top"></a>
-                <h4><i class="em em-star"></i></h4>
-            </div>
-            <div class="col-md-4 results">
-                <img src="assets/images/burger.jpg" class="imgportf" alt="Hot">
-                <h4><i class="em em-fire"></i></h4>
-            </div>
+            </div> -->
         </div>
 
         <div class="row justify-content-center" id="loading">
@@ -133,5 +114,6 @@
     <script src="assets/js/api_calls.js"></script>
     <script src="assets/js/click_events.js"></script>
     <script src="assets/js/inputs.js"></script>
+    <script src="assets/js/dom_manipulation.js"></script>
 </body>
 </html>
