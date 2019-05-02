@@ -6,33 +6,22 @@
 // NOTE: we could theoretically run all calls through this
 $(document).ready(function(){
 
-    // Looks at the url and grabs the param for restaurant + location from local storage
-
-    var exclude = localStorage.getItem('exclude');
-console.log("exclude: " + exclude)
-    
-    console.log("restaurant: " + localStorage.getItem('restaurant'));
-    console.log("location: " + localStorage.getItem('location'));
-    console.log("ingredients: " + localStorage.getItem('ingredients'));
-
     // Update search box for restaurant with user's input
-    $('#restaurant-search-index').val(localStorage.getItem('restaurant'));
+    $('#restaurant-search-result').val(localStorage.getItem('restaurant'));
+
+    // yelp api call
     api_obj.yelpToCuisine(
         localStorage.getItem('restaurant')
         , localStorage.getItem('location')
-        , localStorage.getItem('ingredients') // ["kale", "lettuce", "tomato"] // - ingredients
-        // , []
-        , exclude
-        // , []
-        , localStorage.getItem('health') // ['peanut-free'] // - healthLabels
-        // ,[]
+        , localStorage.getItem('ingredients')
+        , localStorage.getItem('exclude')
+        , localStorage.getItem('health')
         , onclickCallback
-        , "onclick"
+        , 'onclick'
     )
     function onclickCallback(result) {
-        console.log("onclick callback" + result);
-        console.log(result);    
-
+        console.log("onclick callback for document.ready for result.html " + result);
+        // console.log(result);
 
         // Need to fix
 /*         result.forEach(function(business) {
@@ -49,7 +38,7 @@ console.log("exclude: " + exclude)
 $(".searchfa").on("click", function() {
 
     function onclickCallback(result) {
-        console.log("onclick callback" + result);
+        console.log("onclick callback for search button on result.html " + result);
         console.log(result);
         
 // --------------------------------------------------------------------------------
@@ -65,12 +54,12 @@ $(".searchfa").on("click", function() {
     api_obj.yelpToCuisine(
         localStorage.getItem('restaurant')
         , localStorage.getItem('location')
-        , localStorage.getItem('ingredients') // ["kale", "lettuce", "tomato"] // - ingredients
-        , localStorage.getItem('exclude') // ["kiwi", "pineapple"] // - exclusion
-        , localStorage.getItem('health') // ['peanut-free'] // - healthLabels
+        , localStorage.getItem('ingredients')
+        , localStorage.getItem('exclude')
+        , localStorage.getItem('health')
         , onclickCallback
         , "onclick"
     )
-    console.log("clicked button"); 
+    console.log("clicked search button on result.html"); 
 });
 

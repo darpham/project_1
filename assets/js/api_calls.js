@@ -25,7 +25,7 @@ var api_obj = {
     yelpToCuisine : function(restaurant, location, ingredients, exclude, health, callback, callType) {
         
         // console logs so that you know when the method is successfully called
-        console.log("yelp call made");
+        console.info("yelp call made");
         
         $(".loader").show();
 
@@ -42,9 +42,8 @@ var api_obj = {
         var cuisineString = "";
         
         // console logs so that you can see the string that gets passed into the search
-        console.log("search restaurant: " + restaurant);
-        console.log("search location: " + location);
-        console.log("search query: " + myurl);
+        console.log("Yelp Call details: search restaurant - " + restaurant + " -- search location- " + location);
+        console.log("search query created: " + myurl);
 
         // Uses firebase to grab creds
         database.child('yelp').on('value', function(snapshot) {
@@ -103,11 +102,9 @@ var api_obj = {
         // console logs so that you know when the method is successfully called
         console.log("Edamam call made");
 
-        console.log("excludeString1 " + excludeArr);
         ingredientString = helper_func.arrUrl(ingredientArr, '', ",");
         excludeString = helper_func.arrUrl(excludeArr, 'exclude=', "&");
         healthString = helper_func.arrUrl(healthArr, 'healthLabels=', "&");
-        console.log("excludeString2: " + excludeString);
 
 
         var q = cuisineString + ingredientString;
@@ -158,8 +155,6 @@ var helper_func = {
         var urlArr = this.arrDup(arr);
         var urlString = '';
 
-        console.log("testarr");
-        console.log(arr);
         // if the array has more than 2 values
         if(urlArr.length > 1) {
             urlString = delimiter + appendChar + arr[0];
