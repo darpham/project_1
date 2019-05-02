@@ -1,16 +1,22 @@
 // File to grab inputs the user's preferences
 // This JS only interacts with result.html and will update the inputs variables needed for the api_calls.js
 
-// Global variables to pass into api_calls.js
+// Local storage variables to pass into api_calls.js
 // Required
-var restaurantStr = "";
-var locationStr = "San Francisco";
+
+localStorage.setItem('restaurant', '')
+localStorage.setItem('location', 'San Francisco')
 
 // Optional filters
-var ingredientsArr = [];
-var excludeArr = [];
-var healthArr = [];
+localStorage.setItem('ingredients', '[]')
+localStorage.setItem('exclude', '[]')
+localStorage.setItem('health', '[]')
 
+console.log(localStorage.getItem('restaurant'));
+console.log(localStorage.getItem('location'));
+console.log(localStorage.getItem('ingredients'));
+console.log(localStorage.getItem('exclude'));
+console.log(localStorage.getItem('health'));
 
 // 
 // jQuery and JavaScript for restaurant and location
@@ -22,13 +28,13 @@ var healthArr = [];
 // for restaurant searchbox on index.html
 $('#restaurant-search-index').on('input',function() {
     // grabs current value in restaurant search input and assigns it to our global string
-    restaurantStr = $('#restaurant-search-index').val().trim();
+    localStorage.setItem('restaurant', $('#restaurant-search-index').val().trim());
 });
 
 // For restaurant searchbox on results.html
 $('#restaurant-search-result').on('input',function() {
     // grabs current value in restaurant search input and assigns it to our global string
-    restaurantStr = $('#restaurant-search-result').val().trim();
+    localStorage.setItem('restaurant', $('#restaurant-search-result').val().trim());
 });
 
 // updates location search field everytime a user presses a new key in the input field
