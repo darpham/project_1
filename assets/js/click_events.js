@@ -23,34 +23,24 @@ $(document).ready(function(){
         console.log("onclick callback for document.ready for result.html " + result);
         // console.log(result);
 
-        // Need to fix
-/*         result.forEach(function(business) {
-            var suggestion = $('<div>');
-            suggestion.addClass('col-md-4 suggested');
-            suggestion.append('<img class="imgportf suggested-rest" restaurant="' +business.name+ '" src="' +business.image_url+ '" />');
-            suggestion.append('<h5 class="suggested-rest" restaurant="' +business.name+ '" >' +business.name+ '</h5>');
-            $('#suggestions').append(suggestion);
-        }); */
+       dom_manipulation.addRecipes(result.hits);
     };
 });
 
 // 3. Takes in new filters and hits API
-$(".searchfa").on("click", function() {
+$('#result-search-button').on('click', function() {
+
+    // emptys out div that holds recipes for new ones
+    $('#suggested-recipes').empty();
 
     function onclickCallback(result) {
         console.log("onclick callback for search button on result.html " + result);
-        console.log(result);
+        // console.log(result.hits);
         
-// --------------------------------------------------------------------------------
-        // Add functionality to display recipes
-// --------------------------------------------------------------------------------
-
+        // Passes array of recipes into function that will create the recipes on the page
+        dom_manipulation.addRecipes(result.hits);
     };
     
-// --------------------------------------------------------------------------------
-        // Change this function below to pass the right params
-// --------------------------------------------------------------------------------
-
     api_obj.yelpToCuisine(
         localStorage.getItem('restaurant')
         , localStorage.getItem('location')
@@ -62,4 +52,3 @@ $(".searchfa").on("click", function() {
     )
     console.log("clicked search button on result.html"); 
 });
-

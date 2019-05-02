@@ -59,8 +59,8 @@ var api_obj = {
                         console.log("pageload")
                         callback(data);
                     }
-                    else if (callType == "onclick") {
-                        console.log("onclick")
+                    else if (callType == 'onclick') {
+                        console.log('onclick')
                         console.log(data);
 
                         // Option 1: Will loop through only the first two items. Sometimes gets better results
