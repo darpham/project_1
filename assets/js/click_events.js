@@ -11,12 +11,15 @@ $(document).ready(function(){
     console.log("restaurant: " + localStorage.getItem('restaurant'));
     console.log("location: " + localStorage.getItem('location'));
 
+    // Update search box for restaurant with user's input
+    $('#restaurant-search-index').val(localStorage.getItem('restaurant'));
+
     api_obj.yelpToCuisine(
         localStorage.getItem('restaurant')
         , localStorage.getItem('location')
-        , [] // ["kale", "lettuce", "tomato"] // - ingredients
-        , [] // ["kiwi", "pineapple"] // - exclusion
-        , [] // ['peanut-free'] // - healthLabels
+        , localStorage.getItem('ingredients') // ["kale", "lettuce", "tomato"] // - ingredients
+        , localStorage.getItem('exclude') // ["kiwi", "pineapple"] // - exclusion
+        , localStorage.getItem('health') // ['peanut-free'] // - healthLabels
         , onclickCallback
         , "onclick"
     )
@@ -26,8 +29,10 @@ $(document).ready(function(){
 // --------------------------------------------------------------------------------
         // Add functionality to display recipes
 // --------------------------------------------------------------------------------
+    
     };
 });
+
 
 // 3. Takes in new filters and hits API
 $(".searchfa").on("click", function() {
@@ -47,11 +52,11 @@ $(".searchfa").on("click", function() {
 // --------------------------------------------------------------------------------
 
     api_obj.yelpToCuisine(
-        restaurant
-        , "San Francisco"
-        , [] // ["kale", "lettuce", "tomato"] // - ingredients
-        , [] // ["kiwi", "pineapple"] // - exclusion
-        , [] // ['peanut-free'] // - healthLabels
+        localStorage.getItem('restaurant')
+        , localStorage.getItem('location')
+        , localStorage.getItem('ingredients') // ["kale", "lettuce", "tomato"] // - ingredients
+        , localStorage.getItem('exclude') // ["kiwi", "pineapple"] // - exclusion
+        , localStorage.getItem('health') // ['peanut-free'] // - healthLabels
         , onclickCallback
         , "onclick"
     )
