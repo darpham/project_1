@@ -40,6 +40,7 @@ function getParams() {
     var urlParams = new URLSearchParams(window.location.search);
     restaurantParam = urlParams.get('restaurantstr');
     locationParam = urlParams.get('locationstr');
+    console.log(restaurantParam);
     // return myParam
 }
 

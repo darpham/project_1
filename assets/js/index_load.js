@@ -52,16 +52,15 @@ $("#search").on("click", function() {
 // --------------------------------------------------------------------------------
         // Add functionality to navigate the user when they click on an image of a restaurant
 // --------------------------------------------------------------------------------
-    $(document).on("click", '.suggested', function() {
-    // event.preventDefault();
+    $(document).on("click", '.suggested-rest', function() {
+    event.preventDefault();
 
     // Updates the restaurantStr and restaruant searchbox on results.html
     restaurantStr = $(this).attr('restaurant');
-    console.log(this);
     $('#restaurant-search-index').val($(this).attr('restaurant'));
 
     // this line in particular wouldn't work
     // navigates the user while manipulating the URL
-    window.location.href = "result.html?";
+    window.location.href = "result.html?restaurantstr=" + $("#restaurant-search-index").val() + "&" + "locationstr=SanFrancisco";
     
 });
