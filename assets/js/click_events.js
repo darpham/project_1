@@ -13,9 +13,9 @@ $(document).ready(function(){
     api_obj.yelpToCuisine(
         localStorage.getItem('restaurant')
         , localStorage.getItem('location')
-        , localStorage.getItem('ingredients')
-        , localStorage.getItem('exclude')
-        , localStorage.getItem('health')
+        , checkLocalstorage(localStorage.getItem('ingredients'))
+        , checkLocalstorage(localStorage.getItem('exclude'))
+        , checkLocalstorage(localStorage.getItem('health'))
         , onclickCallback
         , 'onclick'
     )
@@ -40,15 +40,28 @@ $('#result-search-button').on('click', function() {
         // Passes array of recipes into function that will create the recipes on the page
         dom_manipulation.addRecipes(result.hits);
     };
-    
+
     api_obj.yelpToCuisine(
         localStorage.getItem('restaurant')
         , localStorage.getItem('location')
-        , localStorage.getItem('ingredients')
-        , localStorage.getItem('exclude')
-        , localStorage.getItem('health')
+        , checkLocalstorage(localStorage.getItem('ingredients'))
+        , checkLocalstorage(localStorage.getItem('exclude'))
+        , checkLocalstorage(localStorage.getItem('health'))
         , onclickCallback
         , "onclick"
     )
     console.log("clicked search button on result.html"); 
 });
+
+
+function checkLocalstorage(localval) {
+    if(localval === '' || localval === null) {
+        return []
+    }
+    else if(Array.isArray(localval === true)){
+        return localval;
+    }
+    else {
+        return JSON.parse(localval);
+    }
+}

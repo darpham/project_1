@@ -106,7 +106,6 @@ var api_obj = {
         excludeString = helper_func.arrUrl(excludeArr, 'exclude=', "&");
         healthString = helper_func.arrUrl(healthArr, 'healthLabels=', "&");
 
-
         var q = cuisineString + ingredientString;
         var from = 0;
         var to = 10;
@@ -152,6 +151,7 @@ var helper_func = {
     // input: array and a set of characters (depending on which parameters of the query you're trying to build)
     // output: a string that can be used by the api_obj methods
     arrUrl: function(arr, appendChar, delimiter) {
+        
         var urlArr = this.arrDup(arr);
         var urlString = '';
 

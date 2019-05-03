@@ -63,8 +63,9 @@ $('#add-ingredient').on('click', function() {
 
         // pushes ingredient into global variable
         ingredientsArr.push(ingredient);
+
         // pushes newly updated ingredients into local storage
-        localStorage.setItem('ingredients', ingredientsArr)
+        localStorage.setItem('ingredients', JSON.stringify(ingredientsArr))
 
         // creates p to hold ingredient info
         var foodItem = $('<p>');
@@ -110,7 +111,8 @@ $('#ex-ingredient').on('click', function(event) {
         excludeArr.push(ingredient);
         console.log("excluded array: " + excludeArr)
         console.log(typeof(excludeArr))
-        localStorage.setItem('exclude', excludeArr);
+        localStorage.setItem('exclude', JSON.stringify(excludeArr));
+
 
         // creates p with ingredient info
         var foodItem = $('<p>');
@@ -147,14 +149,14 @@ $(document.body).on('click', '.delete', function() {
         if (i != -1) {
             excludeArr.splice(i, 1);
             // pushes newly updated excludes list into local storage
-            localStorage.setItem('exclude', excludeArr);
+            localStorage.setItem('exclude', JSON.stringify(excludeArr));
         };
     } else if ($(this).hasClass('in')) {
         var i = ingredientsArr.indexOf(ingredient)
         if (i != -1) {
             ingredientsArr.splice(i, 1);
             // pushes newly updated ingredients into local storage
-            localStorage.setItem('ingredients', ingredientsArr)
+            localStorage.setItem('ingredients', JSON.stringify(ingredientsArr))
         };
     };
 
@@ -198,7 +200,7 @@ $('#health-search').on('click', function() {
             // adds the item to newly cleared health array
             healthArr.push($(this).children('input').attr('value'));
         };
-        localStorage.setItem('health', healthArr);
+        localStorage.setItem('health', JSON.stringify(healthArr));
     });
 
 });
