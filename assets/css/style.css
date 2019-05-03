@@ -147,3 +147,7 @@ h1 {
     font-family: 'Sofia', cursive;
     border-bottom: 1px solid #f47c7c; 
 }
+.em-heavy_plus_sign, .em-heavy_minus_sign {
+    font-size: 9px;
+    margin-right: 10px;
+}
