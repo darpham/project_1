@@ -53,6 +53,13 @@ $('#result-search-button').on('click', function() {
     console.log("clicked search button on result.html"); 
 });
 
+$(document).on('click', '.recipe', function() {
+    event.preventDefault();
+
+    // opens a new tab with recipe the user clicked
+    window.open($(this).attr('href'));
+    return false;
+});
 
 function checkLocalstorage(localval) {
     if(localval === '' || localval === null) {
@@ -64,4 +71,5 @@ function checkLocalstorage(localval) {
     else {
         return JSON.parse(localval);
     }
-}
+};
+
