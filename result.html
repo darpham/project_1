@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sofia" rel="stylesheet">
+    <title>Yelp El-Eat</title>
+</head>
+<body>
+    <div class="background-div">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 title">
+                    <h1><a href=index.html><i class="em em-knife_fork_plate"></i></a>Yelp El-Eat</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 search">
+                    <form id="searchinfo">
+                        <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text one">Find:</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search any restaurant..." name="restaurant" id="restaurant-search-result" required>
+                        <span class="input-group-text one"><i class="material-icons" style="font-size:36px">add_location</i>Near:</span>
+                        <input type="text" class="form-control" id="location-search" name="location" value="San Francisco">
+                        <button type="button" class="searchfa" id="result-search-button"><i class="fa fa-search"></i></button>
+                        </div>  
+                    <!-- Spinner gif when loading -->
+                    <pre id="content" style="white-space: pre-wrap;"></pre>
+                    <div class="loader" style="display:none"></div>
+                    </form>   
+                </div>
+            </div>
+        
+            <div class="row justify-content-center no-gutters">
+                <div class="col-lg-1">
+                </div>
+                <div class="col-lg-1">
+                    <i class="fa fa-filter"></i>
+                </div>
+                <div class="col-lg-3">
+                    <form>
+                        <span>
+                            <input id="ingredient-to-add" type="text" placeholder="Ingredients" spellcheck="true">
+                            <input id="add-ingredient" value="Add" type="button">
+                        </span>
+                        <h6 class="name"><i class="em em-heavy_plus_sign"></i>Ingredients</h6>
+                    </form>
+                    
+                    <div id="include-ingredients">
+                        <!-- included ingredients will be added here -->
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <form>
+                        <span>
+                            <input id="ingredient-to-exclude" type="text" placeholder="Exclude Ing" spellcheck="true">
+                            <input id="ex-ingredient" value="Add" type="button">
+                        </span>
+                        <h6 class="name"><i class="em em-heavy_minus_sign"></i>Exclude ing</h6>
+                    </form>
+                    
+                    <div id="exclude-ingredients">
+                        <!-- included ingredients will be added here -->
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div style="width: 200px; height: 100px; overflow-y: scroll;">
+                        <ul class="multiselect-container" id="health-search" >
+                        <!-- List of dietary resitrictions created via inputs.js -->
+
+
+                        </ul>
+                    </div>
+                </div>   
+                <div class="col-lg-1">
+                </div>  
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="container">
+        <br><br>
+        <div class="row"><p class="res">Results:</p></div>
+        <div class="row hidden" id="suggested-recipes">
+            <!-- example div recipes created via dom_manipulation.addRecips (dom_manipulation.js) -->
+            <!-- <div class="col-md-4 results">
+                <img src="assets/images/burger.jpg" class="imgportf" alt="Hot">
+                <h4><i class="em em-fire"></i></h4>
+            </div> -->
+        </div>
+
+        <div class="row justify-content-center" id="loading">
+            <div class="col-lg-9">
+                <img src="assets/images/loading1.gif" alt="loading">
+            </div>
+        </div>
+    </div>
+    
+<footer>
+   <h6>Copyright &copy;</h6>
+</footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script src="assets/js/api_calls.js"></script>
+    <script src="assets/js/click_events.js"></script>
+    <script src="assets/js/inputs.js"></script>
+    <script src="assets/js/dom_manipulation.js"></script>
+</body>
+</html>

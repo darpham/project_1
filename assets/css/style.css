@@ -1,0 +1,153 @@
+body {
+    /* background-image: url("../images/bananas.png"); */
+    background-color: white;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    color: rgb(38, 78, 78);
+}
+.background-div {
+    height: auto;
+    background-color: #FFEDED;
+}
+.container {
+    margin: 0 auto;
+}
+.title {
+    margin: 20px;
+}
+.em-knife_fork_plate {
+    margin-right: 20px;
+}
+.btn-default {
+    background-color: transparent;
+    border: none;
+}
+#randomsearch {
+   margin-top: 20px;
+   margin-left: 80px;
+}
+#restaurant-search-index {
+    border-radius: 30px;
+    box-shadow: 0px 3px 5px 0px rgb(172, 165, 165);
+    background: #fff;
+    height: 50px;
+}
+.input-group {
+    width: 95%;
+    align-content: center;
+}
+.em-mag {
+    margin-left: 5px;
+}
+.imgportf {
+    margin-left: 30px;
+    width: 250px;
+    height: 200px;
+    margin-top: 40px;
+    cursor: pointer;
+    opacity: .85;
+    box-shadow: 1px 5px 8px 2px rgb(172, 165, 165);
+    background: #fff;
+}
+h4, h5 {
+    position: absolute;
+    bottom: 10px;
+    padding: 10px;
+    margin-bottom: 0;
+    margin-left: 30px;
+    width: 250px;
+    line-height: 30px;
+    text-align: center;
+    background: #f47c7c;
+    font-family: 'Indie Flower', cursive;
+    border-bottom: 0;
+    opacity: 0.8;
+    cursor: pointer;
+}
+.em-fire, .em-star {
+    margin-left: 10px;
+}
+footer {
+    padding: 10px 0;
+    clear: both;
+    font-size: 8px;
+    color: #FFEDED;
+    text-align: center;
+    margin-top: 30px;
+}     
+.res {
+    margin-left: 40px;
+    font-size: 30px;
+    margin-bottom: 0px;
+    font-family: 'Sofia', cursive;
+}
+#instructions {
+    margin: auto;
+    font-size: 20px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 300;
+    margin-top: 15px;
+}
+#searchinfo {
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.add-btn, .searchfa, .one {
+    background: #f47c7c;
+}
+.fa-filter, .fa-search {
+    font-size: 40px;
+}
+#health-search {
+    list-style-type: none;
+}
+::-webkit-scrollbar {
+    width: 20px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #f47c7c; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(161, 2, 2); 
+}
+.delete {
+    background: rgb(161, 2, 2);
+    font-size: 10px;
+}
+/* class to hide/un-hide certain divs until needed */
+.hidden {
+    display: none;
+}
+h1 {
+    font-family: 'Sofia', cursive;
+}
+#loading {
+    margin-bottom: 30px;
+}
+.mr-2 {
+    font-size: 13px;
+    font-family: 'Sofia', cursive;
+}
+.inglist {
+    margin-top: 3px;
+    background-color: white;
+    margin-bottom: 3px;
+    font-size: 11px;
+    width: 62%;
+}
+.name {
+    width: 42%;
+    margin-top: 5px;
+    margin-left: 20%;
+    font-family: 'Sofia', cursive;
+    border-bottom: 1px solid #f47c7c; 
+}
+.em-heavy_plus_sign, .em-heavy_minus_sign {
+    font-size: 9px;
+    margin-right: 10px;
+}
