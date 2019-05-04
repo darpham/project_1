@@ -35,8 +35,8 @@ dom_manipulation = {
         recipes.forEach(function(recipe) {
             var suggestion = $('<div>');
             suggestion.addClass('col-md-4 results');
-            suggestion.append('<img class="imgportf recipe" src="' +recipe.recipe.image+ '" />');
-            suggestion.append('<h5 class="recipe" >' +recipe.recipe.label+ '</h5>');
+            suggestion.append('<img class="imgportf recipe" src="' +recipe.recipe.image+ '" href="' +recipe.recipe.url+ '" />');
+            suggestion.append('<h5 class="" > <a href="' +recipe.recipe.url+ '" target="_blank" </a>' +recipe.recipe.label+ '</h5>');
             $('#suggested-recipes').append(suggestion);
         });
 
